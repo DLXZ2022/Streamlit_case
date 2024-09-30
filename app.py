@@ -6,7 +6,7 @@ from random import *
 df=pd.read_excel('list.xlsx')
 st.title('天命人挑选系统')
 st.write('欢迎使用天命人挑选系统！')
-if st.button('就决定是你了！') :
+if st.button(':red[就决定是你了！]') :
     pf=pd.DataFrame(df,index=range(1,len(df)))
     chose=df.loc[randint(1,len(df))]
   
