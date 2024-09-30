@@ -10,7 +10,7 @@ if st.button(':red[就决定是你了！]') :
     pf=pd.DataFrame(df,index=range(1,len(df)))
     chose=df.loc[randint(1,len(df))]
     st.write('姓名:',chose['姓名'])
-    tab1,tab2=st.tabs('班级:'+chose['班级'],'学号:'+chose['学号'])
+    tab1,tab2=st.tabs(['班级:'+chose['班级'],'学号:'+chose['学号']])
     with tab1:
         st.header('班级信息')
     with tab2:
