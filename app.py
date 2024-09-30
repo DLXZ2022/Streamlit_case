@@ -1,23 +1,11 @@
-import openai
 import streamlit as st
-with st.sidebar:
-    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
-
-st.title("💬 Chatbot")
-if "messages" not in st.session_state:
-    st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
-
-for msg in st.session_state.messages:
-    st.chat_message(msg["role"]).write(msg["content"])
-
-if prompt := st.chat_input():
-    if not openai_api_key:
-        st.info("Please add your OpenAI API key to continue.")
-        st.stop()
-    openai.api_key = openai_api_key
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    st.chat_message("user").write(prompt)
-    response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
-    msg = response.choices[0].message
-    st.session_state.messages.append(msg)
-    st.chat_message("assistant").write(msg.content)
+import pandas as pd
+import numpy as np
+import openpyxl
+from random import *
+df=pd.read_excel('list.xlsx')
+pf=pd.DataFrame(df,index=range(1,len(df)))
+chose=df.loc[randint(1,len(df))]
+st.title('天命人挑选系统')
+st.write('欢迎使用天命人挑选系统！')
+st.write('就决定是你了！',{'姓名':chose['姓名'],'学号':chose['学号'],'班级':chose['班级']})
